@@ -17,7 +17,21 @@ displays the fetched metadata.
     git clone https://github.com/natikozel/Metadata-Fetcher.git
     ```
 
-2. **Install dependencies for both front-end and back-end**:
+## Environment Variables
+
+1. **Create a `.env` file** in the root directory of both your frontend and backend projects.
+
+2. **Add the following environment variables** to the `.env` file:
+
+    ```plaintext
+    PORT=8080
+    REACT_APP_SERVER_ENDPOINT_URL=http://localhost:8080
+    ```
+
+3. **Ensure the environment variables are loaded correctly** by restarting your development server after making these
+   changes.
+
+4. **Install dependencies for both front-end and back-end**:
     ```sh
     cd frontend
     npm install
@@ -25,14 +39,28 @@ displays the fetched metadata.
     npm install
     ```
 
-3. **Environment Variables**:
-    - Create a `.env` file in the root directory.
-    - Add the following environment variables:
+5. **Environment Variables**:
+    - Create a `.env` file for each of the ends as follows:
+   ```
+      Metadata-Fetcher/
+      ├── backend/
+      │   ├── .env
+      ├── frontend/
+      │   ├── .env
+      ├── README.md
+      └── ...
+   ```
+    - Add the following environment variables in the `backend .env` file:
         ```
         PORT=8080
         ```
 
-4. **Run the application**:
+    - Add the following environment variables in the `frontend .env` file:
+        ```
+        REACT_APP_SERVER_ENDPOINT_URL=http://localhost:8080
+        ```
+
+6. **Run the application**:
     - Open a new terminal and run the front-end:
         ```sh
         cd frontend
@@ -107,7 +135,6 @@ displays the fetched metadata.
 11. **Backend Metadata Fetching**:
     - **Choice**: Used `fetchMetadata.js` to handle all types of possible errors.
     - **Trade-off**: Centralizes error handling for metadata fetching but requires comprehensive error handling logic.
-
 
 ## Live Demo
 

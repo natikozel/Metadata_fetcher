@@ -2,8 +2,6 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {fetchCsrfToken} from './csrfSlice';
 
-// const SERVER_ENDPOINT_URL = 'http://localhost:8080/fetch-metadata';
-const SERVER_ENDPOINT_URL = 'https://metadata-fetcher-one.vercel.app/fetch-metadata';
 const ERROR_DETAILS_MAX_LENGTH = 50
 
 export const fetchMetadata = createAsyncThunk(
@@ -16,9 +14,9 @@ export const fetchMetadata = createAsyncThunk(
             await dispatch(fetchCsrfToken());
             csrfToken = getState().csrf.token;
         }
-
+        console.log(process.env.PORT)
         try {
-            const response = await axios.post(SERVER_ENDPOINT_URL, {urls}, {
+            const response = await axios.post(process.env.REACT_APP_SERVER_ENDPOINT_URL + '/fetch-metadata', {urls}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-Token': csrfToken,
@@ -37,7 +35,7 @@ export const fetchMetadata = createAsyncThunk(
         } catch (error) {
             console.log(error)
             const errorData = error.response?.data
-            if (errorData) {
+            if (errorData && Array.isArray(errorData)) {
                 let details = errorData.details;
                 if (Array.isArray(details)) {
                     details = details.join(', ');
@@ -47,7 +45,7 @@ export const fetchMetadata = createAsyncThunk(
                 }
                 return rejectWithValue(`${errorData.message}${details ? ': ' + details : ''}`);
             } else if (error.response?.status === 404) {
-                return rejectWithValue('DNS resolution failed.');
+                return rejectWithValue('Endpoint not found.');
             } else if (error.response?.status === 408) {
                 return rejectWithValue('Connection timed out.');
             } else if (error.response?.status === 310) {
