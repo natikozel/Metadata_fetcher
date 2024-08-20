@@ -13,4 +13,6 @@
 .env.test.local
 .env.production.local
 /backend/access.log
+/frontend/.env
+/backend/.env
 
