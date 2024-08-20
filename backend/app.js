@@ -6,6 +6,7 @@ const path = require("path");
 const helmet = require('helmet');
 const ssrf = require('ssrf');
 const morgan = require('morgan');
+const cors = require('cors');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser')
 const errorHandler = require('./src/middleware/error')
@@ -24,7 +25,8 @@ const accessLogStream = createWriteStream(path.join(__dirname, 'access.log'), {f
 
 
 app.use(rateLimit);
-app.use(allowCors);
+app.use(cors());
+// app.use(allowCors);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
