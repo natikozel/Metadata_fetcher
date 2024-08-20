@@ -1,10 +1,12 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const SERVER_ENDPOINT_URL = 'http://localhost:8080/csrf-token';
+
+// const SERVER_ENDPOINT_URL = 'http://localhost:8080/csrf-token';
+const SERVER_ENDPOINT_URL = 'https://metadata-fetcher-one.vercel.app/csrf-token';
 
 export const fetchCsrfToken = createAsyncThunk('csrf/fetchCsrfToken', async () => {
-    const response = await axios.get(SERVER_ENDPOINT_URL, { withCredentials: true });
+    const response = await axios.get(SERVER_ENDPOINT_URL, {withCredentials: true});
     return response.data.csrfToken;
 });
 

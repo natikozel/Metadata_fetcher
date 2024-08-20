@@ -2,7 +2,8 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {fetchCsrfToken} from './csrfSlice';
 
-const SERVER_ENDPOINT_URL = 'http://localhost:8080/fetch-metadata';
+// const SERVER_ENDPOINT_URL = 'http://localhost:8080/fetch-metadata';
+const SERVER_ENDPOINT_URL = 'https://metadata-fetcher-one.vercel.app/fetch-metadata';
 const ERROR_DETAILS_MAX_LENGTH = 50
 
 export const fetchMetadata = createAsyncThunk(
