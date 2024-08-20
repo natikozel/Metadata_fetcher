@@ -14,7 +14,6 @@ export const fetchMetadata = createAsyncThunk(
             await dispatch(fetchCsrfToken());
             csrfToken = getState().csrf.token;
         }
-        console.log(process.env.PORT)
         try {
             const response = await axios.post(process.env.REACT_APP_SERVER_ENDPOINT_URL + '/fetch-metadata', {urls}, {
                 headers: {
