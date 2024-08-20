@@ -13,6 +13,7 @@ const errorHandler = require('./src/middleware/error')
 const {isValidUrl} = require('./src/util/regexUtil');
 const FetchError = require('./src/util/FetchError');
 const secureFetchMetadata = require('./src/util/fetchMetadata');
+const allowCors = require('./src/middleware/allowCors')
 
 // Middlewares
 const rateLimit = require('./src/middleware/rateLimit.js')
@@ -25,7 +26,13 @@ const accessLogStream = createWriteStream(path.join(__dirname, 'access.log'), {f
 
 app.use(rateLimit);
 app.use(cors({
-    origin: '*',
+    // origin: 'http://localhost:3000',
+    origin: (origin, callback) => {
+        if (!origin)
+            return callback(null, true); // Mobile or CURL
+        else
+            callback(null, true) // all origins
+    },
     // App only requires Content-Type (Urls formatted with JSON data) and X-CSRF-Token headers
     allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
     // App only requires GET (CSRF) and POST (fetch-metadata) methods
@@ -43,11 +50,11 @@ if (process.env.NODE_ENV !== 'test') {
 }
 app.use(morgan('combined', {stream: accessLogStream}));
 
-app.get('/csrf-token', (req, res) => {
+app.get('/csrf-token', allowCors, (req, res) => {
     res.json({csrfToken: req.csrfToken()});
 });
 
-app.post('/fetch-metadata', async (req, res, next) => {
+app.post('/fetch-metadata', allowCors, async (req, res, next) => {
     const {urls} = req.body;
     try {
         if (!Array.isArray(urls)) {
@@ -78,6 +85,6 @@ app.post('/fetch-metadata', async (req, res, next) => {
     }
 });
 
-app.use(errorHandler)
+app.use(errorHandler, allowCors)
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 module.exports = app;
