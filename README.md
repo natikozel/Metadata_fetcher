@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Full-Stack Metadata Fetcher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Full-Stack Metadata Fetcher is a web application designed to fetch and display metadata from a list of provided
+URLs. The application consists of a front-end built with React and a back-end built with Express.js. It includes
+features such as rate limiting, CSRF protection, and data sanitization to ensure security and reliability. The
+application also has comprehensive error handling and testing using Jest. The back-end processes the URLs, sanitizes
+them, and fetches metadata, while the front-end handles user input and displays the fetched metadata.
 
-In the project directory, you can run:
+## Setup
 
-### `npm start`
+1. **Clone the repository**:
+    ```sh
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Install dependencies for both front-end and back-end**:
+    ```sh
+    cd frontend
+    npm install
+    cd ../backend
+    npm install
+    ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Environment Variables**:
+    - Create a `.env` file in the root directory.
+    - Add the following environment variables:
+        ```
+        PORT=8080
+        NODE_ENV=development
+        ```
 
-### `npm test`
+4. **Run the application (From the root directory)**:
+    ```sh
+    cd frontend
+    npm start
+    cd ../backend
+    npm start
+    ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Testing
 
-### `npm run build`
+1. **Run unit tests for the front-end**:
+    ```sh
+    cd frontend
+    npm test
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Run unit tests for the back-end**:
+    ```sh
+    cd backend
+    npm test
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Design Choices and Trade-offs
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Rate Limiting**:
+    - **Choice**: Implemented a custom rate limiting middleware instead of using `express-rate-limit`.
+    - **Trade-off**: Provides more control and customization but requires additional maintenance and testing.
 
-### `npm run eject`
+2. **CSRF Protection**:
+    - **Choice**: Used `csurf` middleware for CSRF protection.
+    - **Trade-off**: Ensures security against CSRF attacks but requires additional setup for handling CSRF tokens in
+      tests.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Error Handling**:
+    - **Choice**: Centralized error handling using a custom `FetchError` class and middleware.
+    - **Trade-off**: Simplifies error management but requires consistent use of the custom error class throughout the
+      application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Testing**:
+    - **Choice**: Used `jest` for mocking and running tests.
+    - **Trade-off**: Provides a robust testing framework but requires additional setup for mocking middleware and
+      handling asynchronous tests.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. **Security**:
+    - **Choice**: Used `helmet` for setting various HTTP headers to secure the app.
+    - **Trade-off**: Enhances security but may require configuration adjustments for specific use cases.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+6. **Data Sanitization**:
+    - **Choice**: Used `xss` and `ssrf` libraries for sanitizing URLs.
+    - **Trade-off**: Protects against XSS and SSRF attacks but adds overhead to request processing.
 
-## Learn More
+7. **Middleware**:
+    - **Choice**: Modularized middleware for rate limiting, header protection, and error handling.
+    - **Trade-off**: Improves code organization and reusability but increases the number of files and complexity.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Live Demo
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Link to live demo](https:TODO)
