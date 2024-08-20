@@ -27,12 +27,13 @@ const accessLogStream = createWriteStream(path.join(__dirname, 'access.log'), {f
 app.use(rateLimit);
 app.use(cors({
     // origin: 'http://localhost:3000',
-    origin: (origin, callback) => {
-        if (!origin)
-            return callback(null, true); // Mobile or CURL
-        else
-            callback(null, true) // all origins
-    },
+    // origin: (origin, callback) => {
+    //     if (!origin)
+    //         return callback(null, true); // Mobile or CURL
+    //     else
+    //         callback(null, true) // all origins
+    // },
+    origin: 'https://metadata-fetcher-81ku.vercel.app',
     // App only requires Content-Type (Urls formatted with JSON data) and X-CSRF-Token headers
     allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
     // App only requires GET (CSRF) and POST (fetch-metadata) methods
