@@ -108,7 +108,7 @@ displays the fetched metadata.
       handling asynchronous tests.
 
 5. **Security**:
-    - **Choice**: Used `helmet` for setting various HTTP headers to secure the app.
+    - **Choice**: Used `helmet` for setting various HTTP headers to secure the index.
     - **Trade-off**: Enhances security but may require configuration adjustments for specific use cases.
 
 6. **Data Sanitization**:

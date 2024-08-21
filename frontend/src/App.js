@@ -8,7 +8,7 @@ import Metadata from "./components/Metadata";
 const App = () => {
     return (
         <Provider store={store}>
-            <div className="app">
+            <div className="index">
                 <div className="left-panel">
                     <UrlsPanel/>
                 </div>

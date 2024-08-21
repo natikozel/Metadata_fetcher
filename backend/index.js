@@ -19,35 +19,35 @@ const allowCors = require('./src/middleware/allowCors')
 const rateLimit = require('./src/middleware/rateLimit.js')
 const headerProtection = require('./src/middleware/headerProtection.js');
 
-const app = express();
+const index = express();
 const PORT = process.env.PORT || 8080;
 const accessLogStream = createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
 
 
-app.use(rateLimit);
-app.use(cors());
-// app.use(allowCors);
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use(helmet());
-app.use(headerProtection);
+index.use(rateLimit);
+index.use(cors());
+// index.use(allowCors);
+index.use(cookieParser());
+index.use(express.json());
+index.use(express.urlencoded({extended: true}));
+index.use(helmet());
+index.use(headerProtection);
 if (process.env.NODE_ENV !== 'test') {
-    app.use(csrf({cookie: true}));
+    index.use(csrf({cookie: true}));
 }
-app.use(morgan('combined', {stream: accessLogStream}));
+index.use(morgan('combined', {stream: accessLogStream}));
 
 
-app.get('/', (req, res) => {
+index.get('/', (req, res) => {
     res.json({message: 'Hello World!'});
 })
 
 
-app.get('/csrf-token', (req, res) => {
+index.get('/csrf-token', (req, res) => {
     res.json({csrfToken: req.csrfToken()});
 });
 
-app.post('/fetch-metadata', async (req, res, next) => {
+index.post('/fetch-metadata', async (req, res, next) => {
     const {urls} = req.body;
     try {
         if (!Array.isArray(urls)) {
@@ -78,6 +78,6 @@ app.post('/fetch-metadata', async (req, res, next) => {
     }
 });
 
-app.use(errorHandler)
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-module.exports = app;
+index.use(errorHandler)
+index.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+module.exports = index;
