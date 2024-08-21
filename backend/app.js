@@ -38,7 +38,7 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(morgan('combined', {stream: accessLogStream}));
 
 
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
     res.json({message: 'Hello World!'});
 })
 
