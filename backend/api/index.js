@@ -3,7 +3,6 @@ const express = require('express');
 const xss = require('xss');
 const helmet = require('helmet');
 const ssrf = require('ssrf');
-const morgan = require('morgan');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser')
 const errorHandler = require('../src/middleware/error')
@@ -30,11 +29,6 @@ index.use(headerProtection);
 if (process.env.NODE_ENV !== 'test') {
     index.use(csrf({cookie: true}));
 }
-
-
-index.get('/', (req, res) => {
-    res.json({message: 'Hello World!'});
-})
 
 
 index.get('/csrf-token', (req, res) => {

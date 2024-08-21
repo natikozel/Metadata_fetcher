@@ -1,6 +1,6 @@
 const allowCors = async (req, res, next) => {
 
-    const allowedOrigins = ['http://localhost:3001', 'https://metadata-fetcher-frontend.vercel.app']
+    const allowedOrigins = ['http://localhost:3000']
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
         res.setHeader('Access-Control-Allow-Origin', origin);
