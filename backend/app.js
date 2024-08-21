@@ -37,6 +37,12 @@ if (process.env.NODE_ENV !== 'test') {
 }
 app.use(morgan('combined', {stream: accessLogStream}));
 
+
+app.get('/test', (req, res) => {
+    res.json({message: 'Hello World!'});
+})
+
+
 app.get('/csrf-token', (req, res) => {
     res.json({csrfToken: req.csrfToken()});
 });
