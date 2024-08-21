@@ -1,0 +1,7 @@
+::1 - - [21/Aug/2024:09:50:16 +0000] "GET /csrf-token HTTP/1.1" 200 52 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [21/Aug/2024:09:50:20 +0000] "GET /csrf-token HTTP/1.1" 200 52 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [21/Aug/2024:09:51:25 +0000] "GET /csrf-token HTTP/1.1" 200 52 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [21/Aug/2024:09:51:26 +0000] "POST /fetch-metadata HTTP/1.1" 200 523 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [21/Aug/2024:09:51:32 +0000] "POST /fetch-metadata HTTP/1.1" 200 523 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [21/Aug/2024:09:51:36 +0000] "GET /csrf-token HTTP/1.1" 200 52 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+::1 - - [21/Aug/2024:09:51:37 +0000] "POST /fetch-metadata HTTP/1.1" 200 523 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"

@@ -9,15 +9,15 @@ const morgan = require('morgan');
 const cors = require('cors');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser')
-const errorHandler = require('./src/middleware/error')
-const {isValidUrl} = require('./src/util/regexUtil');
-const FetchError = require('./src/util/FetchError');
-const secureFetchMetadata = require('./src/util/fetchMetadata');
-const allowCors = require('./src/middleware/allowCors')
+const errorHandler = require('../src/middleware/error')
+const {isValidUrl} = require('../src/util/regexUtil');
+const FetchError = require('../src/util/FetchError');
+const secureFetchMetadata = require('../src/util/fetchMetadata');
+const allowCors = require('../src/middleware/allowCors')
 
 // Middlewares
-const rateLimit = require('./src/middleware/rateLimit.js')
-const headerProtection = require('./src/middleware/headerProtection.js');
+const rateLimit = require('../src/middleware/rateLimit.js')
+const headerProtection = require('../src/middleware/headerProtection.js');
 
 const index = express();
 const PORT = process.env.PORT || 8080;
@@ -25,8 +25,8 @@ const accessLogStream = createWriteStream(path.join(__dirname, 'access.log'), {f
 
 
 index.use(rateLimit);
-index.use(cors());
-// index.use(allowCors);
+// index.use(cors());
+index.use(allowCors);
 index.use(cookieParser());
 index.use(express.json());
 index.use(express.urlencoded({extended: true}));

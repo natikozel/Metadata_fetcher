@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../index');
+const app = require('../../api');
 
 jest.mock('csurf', () => {
     return jest.fn(() => (req, res, next) => {

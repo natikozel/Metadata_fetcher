@@ -2,10 +2,10 @@
   "name": "fs-home-task-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node -r dotenv/config index.js",
-    "dev": "nodemon -r dotenv/config index.js",
+    "start": "node -r dotenv/config api/index.js",
+    "dev": "nodemon -r dotenv/config api/index.js",
     "test": "jest"
   },
   "keywords": [],
