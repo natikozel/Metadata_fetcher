@@ -1,12 +1,9 @@
 // Dependencies
 const express = require('express');
 const xss = require('xss');
-const {createWriteStream} = require('fs');
-const path = require("path");
 const helmet = require('helmet');
 const ssrf = require('ssrf');
 const morgan = require('morgan');
-const cors = require('cors');
 const csrf = require('csurf');
 const cookieParser = require('cookie-parser')
 const errorHandler = require('../src/middleware/error')
@@ -21,11 +18,9 @@ const headerProtection = require('../src/middleware/headerProtection.js');
 
 const index = express();
 const PORT = process.env.PORT || 8080;
-const accessLogStream = createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
 
 
 index.use(rateLimit);
-// index.use(cors());
 index.use(allowCors);
 index.use(cookieParser());
 index.use(express.json());
@@ -35,7 +30,6 @@ index.use(headerProtection);
 if (process.env.NODE_ENV !== 'test') {
     index.use(csrf({cookie: true}));
 }
-index.use(morgan('combined', {stream: accessLogStream}));
 
 
 index.get('/', (req, res) => {
